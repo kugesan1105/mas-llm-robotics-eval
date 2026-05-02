@@ -10,16 +10,58 @@ Multi-Agentic System for LLM-Driven Autonomous Problem-Solving in Robotics"**
 
 Three systems evaluated on the same 20-scenario Webots benchmark with
 identical robot, RRT motion planner, GPT-4o backbone (`gpt-4o-2024-08-06`,
-T = 0), and scenario-supplied door states. Outputs are graded under a strict
-rubric — a scenario fails if the system's final user-facing message is
-inconsistent with ground-truth state, regardless of whether the underlying
-plan executed.
+T = 0), and scenario-supplied door states.
+
+### How the numbers are graded
+
+Each scenario in [`scenarios/scenarios.json`](scenarios/scenarios.json) is
+associated with a fixed list of binary goal-condition predicates (1 to 3
+per scenario, total 30 across the 20 scenarios — following ProgPrompt
+[Singh et al., ICRA 2023] and VirtualHome [Puig et al., CVPR 2018]). The
+predicates depend on the task category:
+
+- **Negative / out-of-scope refusal** — 1 predicate: clean abort or refusal-without-movement.
+- **Information-only** ("where is X?") — 1 predicate: emit a correct inform message.
+- **Guidance** ("take me to X") — 1 predicate: reach the destination.
+- **Object-search-and-report** — 2 predicates: visit the target room, emit a correct inform.
+- **Object-retrieve** — 3 predicates: visit, find/grab, return-or-inform.
+- **Dynamic-constraint navigation** — 2 predicates: valid plan, reach the destination.
+
+From those predicates we report:
+
+- **SR (Success Rate)** — fraction of scenarios in which **every** predicate is satisfied.
+- **GCR (Goal-Conditions Recall)** — total predicates satisfied across all scenarios, divided by the total possible (30). Gives partial credit when only some predicates of a scenario are met.
+- **Exec (Executability)** — fraction of generated plan actions that parse and are valid in the action vocabulary.
+
+A scenario is graded as a **failure** under a strict rubric: the system's
+final user-facing output must be consistent with the ground-truth world
+state declared in the scenario, regardless of whether the underlying plan
+executed. Four failure subtypes are recognised:
+
+- **(a) Hallucinated retrieval claim** — emitting *"I have brought the hammer"* when the hammer is not in the world.
+- **(b) Infeasible action claim** — claiming completion of a task that is physically blocked (e.g., a retrieval claim while every path to the target room is closed).
+- **(c) False-absence / false-presence report** — incorrectly stating an object's presence or absence relative to ground truth.
+- **(d) Fabricated out-of-scope answer** — confidently answering an out-of-scope question instead of refusing (counted separately as a "scope-handling failure").
+
+The same rubric is applied identically to all three systems; the grader is
+[`eval/metric_logger.py`](eval/metric_logger.py) (`grade_outcome`, line
+189). Per-scenario predicate budgets, per-(system, scenario) scores, and
+the aggregation arithmetic are in
+[`docs/goal_conditions.md`](docs/goal_conditions.md).
+
+### Results
 
 | System | SR | GCR | Exec | Hallucinated retrieval/grounding confirmations |
 |---|---:|---:|---:|---:|
 | **Baseline A — Rule-Based replanner** (keyword + Dijkstra + FSM, no LLM) | 65.0 % | 76.7 % | 100 % | 0 |
 | **Baseline B — Non-Agentic LLM planner** (one GPT-4o call, ProgPrompt-style) | 70.0 % | 80.0 % | 100 % | **5** |
 | **Hierarchical MAS (proposed)** | **90.0 %** | **83.3 %** | **100 %** | **0** |
+
+Numerator / denominator for each row:
+
+- Rule-Based: SR = 13 / 20, GCR = 23 / 30
+- Non-Agentic LLM: SR = 14 / 20, GCR = 24 / 30
+- MAS: SR = 18 / 20, GCR = 20 / 24 *(denominator 24 because six scenarios used a Table I carry-over with a coarser predicate count — see [`docs/goal_conditions.md`](docs/goal_conditions.md) §3.3 footnote; the conservative 83.3 % understates MAS by 3–7 points relative to a full re-grade)*
 
 The headline is the **hallucination column**, not the SR column. The
 non-agentic LLM baseline emits five user-facing confirmations that
