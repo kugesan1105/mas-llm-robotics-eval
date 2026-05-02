@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime artifacts (regenerated each run)
+out.log
+*.log
+*.mp3
+*.wav
+*.xlsx
+output_object_searcher_frame.jpg
+properties/binary_map/binary_map_current.png
+webots/properties/binary_map/binary_map_current.png
+
+# Webots build artifacts
+webots/controllers/**/build/
+webots/controllers/**/*.exe
+webots/controllers/**/*.o
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Scratch
+scratch/
+tmp/
+*.tmp

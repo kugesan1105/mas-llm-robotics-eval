@@ -1,0 +1,84 @@
+{
+  "scenario_id": "s10",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776427382.2891324,
+  "end_time": 1776427401.5243242,
+  "reasoning_time_s": 18.774105,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "I couldn't determine the exact location of the power supply in the robotics lab. Please provide more details for better assistance.",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776427382.3022976,
+      "end": 1776427382.302299,
+      "duration": 1e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776427382.3038547,
+      "end": 1776427384.5530388,
+      "duration": 2.249184
+    },
+    {
+      "agent": "TopPlanner",
+      "start": 1776427384.5864663,
+      "end": 1776427386.7906728,
+      "duration": 2.204206
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776427386.8132377,
+      "end": 1776427388.1879919,
+      "duration": 1.374754
+    },
+    {
+      "agent": "QuestionAnswerer",
+      "start": 1776427388.2897751,
+      "end": 1776427397.3745928,
+      "duration": 9.084818
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776427397.4448078,
+      "end": 1776427399.2887077,
+      "duration": 1.8439
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776427399.3577197,
+      "end": 1776427399.357752,
+      "duration": 3.2e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776427399.4085767,
+      "end": 1776427401.4257755,
+      "duration": 2.017199
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776427401.491223,
+      "end": 1776427401.491234,
+      "duration": 1.1e-05
+    }
+  ],
+  "final_position": "R3",
+  "notes": "messages=[\"I couldn't determine the exact location of the power supply in the robotics lab. Please provide more details or check manually.\"]"
+}

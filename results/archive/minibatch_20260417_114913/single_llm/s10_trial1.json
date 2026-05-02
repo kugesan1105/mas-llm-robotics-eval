@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s10",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776387678.1215856,
+  "end_time": 1776387679.7280986,
+  "reasoning_time_s": 1.606372,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "inform(The power supply is in R2, the tool room.)",
+  "plan_valid": true,
+  "num_plan_actions": 1,
+  "num_executable_actions": 1,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 1,
+  "total_input_tokens": 1327,
+  "total_output_tokens": 54,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1327,
+      "output_tokens": 54,
+      "latency_s": 1.606372,
+      "timestamp": 1776387679.7279913
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s20",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776413879.5806723,
+  "end_time": 1776413881.2484407,
+  "reasoning_time_s": 1.667698,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "abort(The canteen is not in this environment.)",
+  "plan_valid": true,
+  "num_plan_actions": 1,
+  "num_executable_actions": 1,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 1,
+  "total_input_tokens": 1309,
+  "total_output_tokens": 47,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1309,
+      "output_tokens": 47,
+      "latency_s": 1.667698,
+      "timestamp": 1776413881.2483969
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

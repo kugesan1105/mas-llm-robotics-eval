@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s17",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776418387.8867674,
+  "end_time": 1776418526.4355795,
+  "reasoning_time_s": 7.276966,
+  "locomotion_time_s": 131.24635553359985,
+  "perception_time_s": 0.025216341018676758,
+  "plan_generated": "goto(D2) ; check_door(D2) ; goto(R1) ; find(biscuit packet) ; grab(biscuit packet) ; goto(D2) ; goto(R2) ; inform(I have brought the biscuit packet.)",
+  "plan_valid": true,
+  "num_plan_actions": 8,
+  "num_executable_actions": 8,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 3,
+  "goal_conditions_met": 3,
+  "llm_call_count": 1,
+  "total_input_tokens": 1316,
+  "total_output_tokens": 165,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1316,
+      "output_tokens": 165,
+      "latency_s": 7.276966,
+      "timestamp": 1776418395.1637616
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R2",
+  "notes": ""
+}

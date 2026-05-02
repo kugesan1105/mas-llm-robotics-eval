@@ -1,0 +1,156 @@
+{
+  "scenario_id": "s19",
+  "system": "mas",
+  "trial": 1,
+  "success": false,
+  "failure_reason": "mas_exception:AttributeError:'Robot' object has no attribute 'path_display'",
+  "graceful_failure": false,
+  "start_time": 1776405104.5811017,
+  "end_time": 1776405152.1999393,
+  "reasoning_time_s": 0.0,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": null,
+  "plan_valid": false,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 0,
+  "goal_conditions_met": 0,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776405104.600658,
+      "end": 1776405104.6006591,
+      "duration": 1e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776405104.6182725,
+      "end": 1776405106.0147579,
+      "duration": 1.396485
+    },
+    {
+      "agent": "TopPlanner",
+      "start": 1776405106.095301,
+      "end": 1776405107.4700825,
+      "duration": 1.374782
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776405107.4713619,
+      "end": 1776405108.662917,
+      "duration": 1.191555
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776405108.7258909,
+      "end": 1776405108.7259254,
+      "duration": 3.5e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776405108.8477433,
+      "end": 1776405110.2211795,
+      "duration": 1.373436
+    },
+    {
+      "agent": "NavigationSupervisorMain",
+      "start": 1776405110.2975786,
+      "end": 1776405112.840314,
+      "duration": 2.542735
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776405112.8792236,
+      "end": 1776405116.2093627,
+      "duration": 3.330139
+    },
+    {
+      "agent": "FinalDestinationIdentifier",
+      "start": 1776405116.2750845,
+      "end": 1776405121.308967,
+      "duration": 5.033883
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776405121.3565848,
+      "end": 1776405124.4013102,
+      "duration": 3.044725
+    },
+    {
+      "agent": "CurrentPositionIdentifier",
+      "start": 1776405124.4085472,
+      "end": 1776405124.408574,
+      "duration": 2.7e-05
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776405124.4091787,
+      "end": 1776405128.150548,
+      "duration": 3.741369
+    },
+    {
+      "agent": "WaypointGenerator",
+      "start": 1776405128.212723,
+      "end": 1776405133.1643662,
+      "duration": 4.951643
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776405133.203456,
+      "end": 1776405137.5267677,
+      "duration": 4.323312
+    },
+    {
+      "agent": "FinalNavigationalPlanner",
+      "start": 1776405137.6527913,
+      "end": 1776405141.3569212,
+      "duration": 3.70413
+    },
+    {
+      "agent": "NavigationHandlerMain",
+      "start": 1776405141.383733,
+      "end": 1776405142.8140583,
+      "duration": 1.430325
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776405142.9183183,
+      "end": 1776405144.458657,
+      "duration": 1.540339
+    },
+    {
+      "agent": "PathPlanner",
+      "start": 1776405144.4666991,
+      "end": 1776405145.8708005,
+      "duration": 1.404101
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776405145.8843114,
+      "end": 1776405147.4402251,
+      "duration": 1.555914
+    },
+    {
+      "agent": "NavigationHandlerMain",
+      "start": 1776405147.4519198,
+      "end": 1776405149.3050265,
+      "duration": 1.853107
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776405149.3917813,
+      "end": 1776405150.520094,
+      "duration": 1.128313
+    }
+  ],
+  "final_position": null,
+  "notes": ""
+}

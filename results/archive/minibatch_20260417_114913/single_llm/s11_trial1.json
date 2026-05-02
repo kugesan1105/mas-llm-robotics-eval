@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s11",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776387679.7287004,
+  "end_time": 1776387681.3561325,
+  "reasoning_time_s": 1.627308,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "inform(The KUKA robot arm is in R3.)",
+  "plan_valid": true,
+  "num_plan_actions": 1,
+  "num_executable_actions": 1,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 1,
+  "total_input_tokens": 1312,
+  "total_output_tokens": 56,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1312,
+      "output_tokens": 56,
+      "latency_s": 1.627308,
+      "timestamp": 1776387681.3560383
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

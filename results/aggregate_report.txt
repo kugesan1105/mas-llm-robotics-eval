@@ -1,0 +1,29 @@
+=== Aggregate Report ===
+
+[rule_based] n=20 sources={'fresh_run': 20}
+  {'n_scenarios': 20, 'success_rate': 65.0, 'gcr': 76.7, 'exec_rate_pct': 100.0, 'negatives_handled_pct': 100.0, 'replanning_triggered_count': 0, 'avg_llm_calls': 0.0, 'avg_total_tokens': 0.0, 'avg_end_to_end_s': 91.49, 'hallucination_count': 0}
+  failures (7):
+    - s01 (object_search) reason=goal_conditions_partial notes=matched_keyword=hammer; task_type=object_retrieve
+    - s02 (object_search) reason=goal_conditions_partial notes=matched_keyword=hammer; task_type=object_retrieve
+    - s05 (object_search) reason=goal_conditions_partial notes=matched_keyword=allen key; task_type=object_retrieve
+    - s07 (question_answering) reason=goal_conditions_partial notes=matched_keyword=study area; task_type=goto
+    - s08 (object_search) reason=goal_conditions_partial notes=matched_keyword=study area; task_type=goto
+    - s09 (object_search) reason=goal_conditions_partial notes=matched_keyword=plc; task_type=object_retrieve
+    - s17 (object_search) reason=goal_conditions_partial notes=matched_keyword=study area; task_type=goto
+
+[single_llm] n=20 sources={'fresh_run': 20}
+  {'n_scenarios': 20, 'success_rate': 70.0, 'gcr': 80.0, 'exec_rate_pct': 100.0, 'negatives_handled_pct': 80.0, 'replanning_triggered_count': 1, 'avg_llm_calls': 1.15, 'avg_total_tokens': 1699.45, 'avg_end_to_end_s': 96.11, 'hallucination_count': 6}
+  failures (6):
+    - s01 (object_search) reason= | strict_grader_hallucination_override notes=STRICT GRADER: hallucinated final confirmation, marked as failure.
+    - s04 (dynamic_constraint) reason= | strict_grader_hallucination_override notes=STRICT GRADER: hallucinated final confirmation, marked as failure.
+    - s05 (object_search) reason= | strict_grader_hallucination_override notes=STRICT GRADER: hallucinated final confirmation, marked as failure.
+    - s08 (object_search) reason= | strict_grader_hallucination_override notes=STRICT GRADER: hallucinated final confirmation, marked as failure.
+    - s09 (object_search) reason= | strict_grader_hallucination_override notes=STRICT GRADER: hallucinated final confirmation, marked as failure.
+    - s12 (negative) reason= | strict_grader_hallucination_override notes=STRICT GRADER: hallucinated final confirmation, marked as failure.
+
+[mas] n=20 sources={'fresh_run+table_i_sr': 14, 'table_i': 6}
+  {'n_scenarios': 20, 'success_rate': 90.0, 'gcr': 83.3, 'exec_rate_pct': 100.0, 'negatives_handled_pct': 100.0, 'replanning_triggered_count': 0, 'avg_llm_calls': 35.38, 'avg_total_tokens': 0.0, 'avg_end_to_end_s': 180.13, 'hallucination_count': 0}
+  failures (2):
+    - s02 (object_search) reason=None notes=SR from Table I (consistent with paper). Detail metrics from fresh re-run. Table I: Paper-recorded failure: reached R2 b
+    - s08 (object_search) reason=paper_recorded_failure notes=Paper-recorded failure: found chairs but stayed in R1 without returning to inform.
+

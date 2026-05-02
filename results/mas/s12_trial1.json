@@ -1,0 +1,60 @@
+{
+  "scenario_id": "s12",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776422093.0454066,
+  "end_time": 1776422097.4347517,
+  "reasoning_time_s": 3.982782,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "I'm sorry, but I cannot answer questions about the president of the USA. I can assist with navigation and tasks related to moving, identifying, picking, and placing objects.",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776422093.0737495,
+      "end": 1776422093.0737514,
+      "duration": 2e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776422093.1270878,
+      "end": 1776422095.2295926,
+      "duration": 2.102505
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776422095.3231618,
+      "end": 1776422095.3232002,
+      "duration": 3.8e-05
+    },
+    {
+      "agent": "Boss",
+      "start": 1776422095.4296901,
+      "end": 1776422097.3099139,
+      "duration": 1.880224
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776422097.401673,
+      "end": 1776422097.4016857,
+      "duration": 1.3e-05
+    }
+  ],
+  "final_position": "R3",
+  "notes": "messages=[\"I'm sorry, but I cannot answer questions about the president of the USA. I can assist with navigation and tasks related to moving, identifying, picking, and placing objects.\"]"
+}

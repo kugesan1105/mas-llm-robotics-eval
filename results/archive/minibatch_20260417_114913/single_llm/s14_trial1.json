@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s14",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776387684.506633,
+  "end_time": 1776387687.2094793,
+  "reasoning_time_s": 2.551597,
+  "locomotion_time_s": 0.1508800983428955,
+  "perception_time_s": 1.9073486328125e-05,
+  "plan_generated": "goto(D3) ; check_door(D3) ; goto(R3) ; goto(D4) ; check_door(D4) ; goto(C) ; goto(D1) ; check_door(D1) ; goto(R1) ; inform(Please follow me to the study room R1.)",
+  "plan_valid": true,
+  "num_plan_actions": 10,
+  "num_executable_actions": 10,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 2,
+  "goal_conditions_met": 2,
+  "llm_call_count": 1,
+  "total_input_tokens": 1330,
+  "total_output_tokens": 190,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1330,
+      "output_tokens": 190,
+      "latency_s": 2.551597,
+      "timestamp": 1776387687.058284
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R1",
+  "notes": ""
+}

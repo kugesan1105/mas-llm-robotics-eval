@@ -1,0 +1,62 @@
+{
+  "scenario_id": "s04",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776414921.8271604,
+  "end_time": 1776414942.6593163,
+  "reasoning_time_s": 20.83177,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 3.814697265625e-06,
+  "plan_generated": "goto(D4) ; check_door(D4) ; goto(C) ; goto(D1) ; check_door(D1) ; goto(R1) ; goto(D2) ; check_door(D2) ; goto(R2) ; find(hammer) ; grab(hammer) ; goto(D2) ; goto(R1) ; goto(D1) ; goto(C) ; goto(D4) ; goto(R3) ; inform(I have brought the hammer.)  || replan: goto(D3) ; check_door(D3) ; goto(D4) ; check_door(D4) ; goto(C) ; goto(D1) ; check_door(D1) ; goto(R1) ; goto(D2) ; check_door(D2) ; goto(R2) ; find(hammer) ; grab(hammer) ; goto(D2) ; goto(R1) ; goto(D1) ; goto(C) ; goto(D4) ; goto(R3) ; inform(I have brought the hammer.)  || replan: goto(D3) ; check_door(D3) ; goto(R3) ; goto(D4) ; check_door(D4) ; goto(C) ; goto(D1) ; check_door(D1) ; goto(R1) ; goto(D2) ; check_door(D2) ; goto(R2) ; find(hammer) ; grab(hammer) ; goto(D2) ; goto(R1) ; goto(D1) ; goto(C) ; goto(D4) ; goto(R3) ; inform(I have brought the hammer.)  || replan: goto(D3) ; check_door(D3) ; goto(D4) ; check_door(D4) ; goto(C) ; goto(D1) ; check_door(D1) ; goto(R1) ; goto(D2) ; check_door(D2) ; goto(R2) ; find(hammer) ; grab(hammer) ; goto(D2) ; goto(R1) ; goto(D1) ; goto(C) ; goto(D4) ; goto(R3) ; inform(I have brought the hammer.)",
+  "plan_valid": true,
+  "num_plan_actions": 79,
+  "num_executable_actions": 79,
+  "replanning_triggered": true,
+  "replanning_succeeded": false,
+  "num_replans": 3,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 4,
+  "total_input_tokens": 5330,
+  "total_output_tokens": 1313,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1325,
+      "output_tokens": 301,
+      "latency_s": 8.643702,
+      "timestamp": 1776414930.4709055
+    },
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1335,
+      "output_tokens": 332,
+      "latency_s": 3.821892,
+      "timestamp": 1776414934.2928953
+    },
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1335,
+      "output_tokens": 347,
+      "latency_s": 4.154599,
+      "timestamp": 1776414938.4475787
+    },
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1335,
+      "output_tokens": 333,
+      "latency_s": 4.211577,
+      "timestamp": 1776414942.6592379
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

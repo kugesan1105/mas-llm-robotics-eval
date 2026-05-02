@@ -1,0 +1,84 @@
+{
+  "scenario_id": "s13",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776422097.5724363,
+  "end_time": 1776422115.1988046,
+  "reasoning_time_s": 16.919693,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "I'm sorry, but I couldn't find the location of the washroom. Please provide more context or details about your surroundings.",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776422097.5844626,
+      "end": 1776422097.5844636,
+      "duration": 1e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776422097.6540368,
+      "end": 1776422099.2967303,
+      "duration": 1.642694
+    },
+    {
+      "agent": "TopPlanner",
+      "start": 1776422099.4075527,
+      "end": 1776422101.783726,
+      "duration": 2.376173
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776422101.7850466,
+      "end": 1776422103.201734,
+      "duration": 1.416687
+    },
+    {
+      "agent": "QuestionAnswerer",
+      "start": 1776422103.286287,
+      "end": 1776422111.1295822,
+      "duration": 7.843295
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776422111.2440574,
+      "end": 1776422112.9881282,
+      "duration": 1.744071
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776422113.0330358,
+      "end": 1776422113.0330718,
+      "duration": 3.6e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776422113.125694,
+      "end": 1776422115.0223734,
+      "duration": 1.896679
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776422115.1189303,
+      "end": 1776422115.1189868,
+      "duration": 5.7e-05
+    }
+  ],
+  "final_position": "R3",
+  "notes": "messages=[\"I'm sorry, but I couldn't find the location of the washroom. Please provide more context or details about your surroundings.\"]"
+}

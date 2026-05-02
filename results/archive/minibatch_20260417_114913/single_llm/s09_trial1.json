@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s09",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776387676.109909,
+  "end_time": 1776387678.1194575,
+  "reasoning_time_s": 1.93791,
+  "locomotion_time_s": 0.05056595802307129,
+  "perception_time_s": 0.020800352096557617,
+  "plan_generated": "goto(R3) ; find(PLC kit) ; grab(PLC kit) ; inform(I have brought the PLC kit.)",
+  "plan_valid": true,
+  "num_plan_actions": 4,
+  "num_executable_actions": 4,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 2,
+  "goal_conditions_met": 2,
+  "llm_call_count": 1,
+  "total_input_tokens": 1310,
+  "total_output_tokens": 94,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1310,
+      "output_tokens": 94,
+      "latency_s": 1.93791,
+      "timestamp": 1776387678.0478575
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

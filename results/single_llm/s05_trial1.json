@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s05",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776414988.7677045,
+  "end_time": 1776415072.5319757,
+  "reasoning_time_s": 6.665598,
+  "locomotion_time_s": 77.07323575019836,
+  "perception_time_s": 0.025196075439453125,
+  "plan_generated": "goto(D3) ; check_door(D3) ; goto(R2) ; find(allen key kit) ; grab(allen key kit) ; goto(D3) ; goto(R3) ; inform(I have brought the allen key kit.)",
+  "plan_valid": true,
+  "num_plan_actions": 8,
+  "num_executable_actions": 8,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 2,
+  "goal_conditions_met": 2,
+  "llm_call_count": 1,
+  "total_input_tokens": 1311,
+  "total_output_tokens": 156,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1311,
+      "output_tokens": 156,
+      "latency_s": 6.665598,
+      "timestamp": 1776414995.433331
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

@@ -1,0 +1,4 @@
+system,avg_end_to_end_s,avg_llm_calls,avg_total_tokens,exec_rate_pct,gcr,hallucination_count,n_scenarios,negatives_handled_pct,replanning_triggered_count,success_rate
+rule_based,91.49,0.0,0.0,100.0,76.7,0,20,100.0,0,65.0
+single_llm,96.11,1.15,1699.45,100.0,80.0,6,20,80.0,1,70.0
+mas,180.13,35.38,0.0,100.0,83.3,0,20,100.0,0,90.0

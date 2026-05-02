@@ -1,0 +1,219 @@
+{
+  "_meta": {
+    "description": "The 20 evaluation scenarios from Table I of the submitted manuscript Access-2026-09207. Used by all three systems (MAS, rule-based, single-LLM) for the comparative evaluation.",
+    "categories": ["semantic", "dynamic_constraint", "object_search", "negative", "question_answering"],
+    "notes": "initial_position is the logical room (R1/R2/R3/C). door_states defines which doors are closed; any door not listed is assumed open. object_in_world controls whether the target object is placed in the Webots world for the scenario."
+  },
+  "scenarios": [
+    {
+      "id": "s01",
+      "category": "object_search",
+      "command": "I need a hammer. Can you take it for me.",
+      "initial_position": "R3",
+      "door_states": {},
+      "object_in_world": false,
+      "expected_destination": "R2",
+      "expected_behavior": "search_and_report_absent",
+      "expected_success": true
+    },
+    {
+      "id": "s02",
+      "category": "object_search",
+      "command": "I need a hammer. Can you take it for me.",
+      "initial_position": "R3",
+      "door_states": {},
+      "object_in_world": true,
+      "expected_destination": "R2",
+      "expected_behavior": "search_and_retrieve",
+      "expected_success": true,
+      "known_failure_in_paper": "object_recognition"
+    },
+    {
+      "id": "s03",
+      "category": "semantic",
+      "command": "I need your help to find a tool to tighten this screw nail.",
+      "initial_position": "R3",
+      "door_states": {"D3": "closed"},
+      "object_in_world": true,
+      "expected_destination": "R2",
+      "expected_behavior": "reroute_search_retrieve",
+      "expected_success": true
+    },
+    {
+      "id": "s04",
+      "category": "dynamic_constraint",
+      "command": "I need a hammer. Can you take it for me.",
+      "initial_position": "R3",
+      "door_states": {"D3": "closed", "D4": "closed"},
+      "expected_destination": "R2",
+      "expected_behavior": "detect_blocked_report",
+      "expected_success": true
+    },
+    {
+      "id": "s05",
+      "category": "object_search",
+      "command": "Go and grab me the allen key kit",
+      "initial_position": "R3",
+      "door_states": {},
+      "object_in_world": false,
+      "expected_destination": "R2",
+      "expected_behavior": "search_and_report_absent",
+      "expected_success": true
+    },
+    {
+      "id": "s06",
+      "category": "semantic",
+      "command": "My hand is dirty. I need to wash my hand. Please take me to a sink.",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": "R1",
+      "expected_behavior": "guide_user",
+      "expected_success": true
+    },
+    {
+      "id": "s07",
+      "category": "question_answering",
+      "command": "My friend said that he is in the study area. I dont know where it is located. Can you tell me the direction.",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": null,
+      "expected_behavior": "inform_direction",
+      "expected_success": true
+    },
+    {
+      "id": "s08",
+      "category": "object_search",
+      "command": "Can you go and check whether if there are any extra chairs available in study area",
+      "initial_position": "R3",
+      "door_states": {},
+      "object_in_world": true,
+      "expected_destination": "R1",
+      "expected_behavior": "search_and_report_present",
+      "expected_success": true,
+      "known_failure_in_paper": "did_not_return"
+    },
+    {
+      "id": "s09",
+      "category": "object_search",
+      "command": "Can you bring me a PLC kit",
+      "initial_position": "R3",
+      "door_states": {},
+      "object_in_world": false,
+      "expected_destination": "R3",
+      "expected_behavior": "search_current_room_report_absent",
+      "expected_success": true
+    },
+    {
+      "id": "s10",
+      "category": "semantic",
+      "command": "Im creating a circuit. I need a power supply. Do you know where can I find a power supply in robotics lab.",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": "R2",
+      "expected_behavior": "inform_location",
+      "expected_success": true
+    },
+    {
+      "id": "s11",
+      "category": "question_answering",
+      "command": "Where can I find the Kuka robot arm",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": "R3",
+      "expected_behavior": "inform_location",
+      "expected_success": true
+    },
+    {
+      "id": "s12",
+      "category": "negative",
+      "command": "Who is the president of USA?",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": null,
+      "expected_behavior": "reject_out_of_scope",
+      "expected_success": true
+    },
+    {
+      "id": "s13",
+      "category": "negative",
+      "command": "I need to find a washroom. Do you know where can I find that",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": null,
+      "expected_behavior": "reject_not_in_environment",
+      "expected_success": true
+    },
+    {
+      "id": "s14",
+      "category": "dynamic_constraint",
+      "command": "I need to find wasantha. He is in study room. Can you take me there. D2 is closed",
+      "initial_position": "R2",
+      "door_states": {"D2": "closed"},
+      "expected_destination": "R1",
+      "expected_behavior": "reroute_and_guide",
+      "expected_success": true
+    },
+    {
+      "id": "s15",
+      "category": "negative",
+      "command": "Do you know where is the kitchen",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": null,
+      "expected_behavior": "reject_not_in_environment",
+      "expected_success": true
+    },
+    {
+      "id": "s16",
+      "category": "dynamic_constraint",
+      "command": "Can you grab me the hammer.",
+      "initial_position": "R1",
+      "door_states": {"D2": "closed"},
+      "object_in_world": true,
+      "expected_destination": "R2",
+      "expected_behavior": "reroute_retrieve_return",
+      "expected_success": true
+    },
+    {
+      "id": "s17",
+      "category": "object_search",
+      "command": "There is a biscuit packet in study area. Grab it for me",
+      "initial_position": "R2",
+      "door_states": {},
+      "object_in_world": true,
+      "expected_destination": "R1",
+      "expected_behavior": "retrieve_and_return",
+      "expected_success": true
+    },
+    {
+      "id": "s18",
+      "category": "semantic",
+      "command": "Can you take me to the sofa",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": "R1",
+      "expected_behavior": "guide_user",
+      "expected_success": true
+    },
+    {
+      "id": "s19",
+      "category": "negative",
+      "command": "Take me to the netball court",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": null,
+      "expected_behavior": "reject_not_in_environment",
+      "expected_success": true
+    },
+    {
+      "id": "s20",
+      "category": "negative",
+      "command": "Take me to the canteen",
+      "initial_position": "R3",
+      "door_states": {},
+      "expected_destination": null,
+      "expected_behavior": "reject_not_in_environment",
+      "expected_success": true
+    }
+  ]
+}

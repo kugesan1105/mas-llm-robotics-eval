@@ -1,0 +1,84 @@
+{
+  "scenario_id": "s11",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776422076.5836985,
+  "end_time": 1776422092.877091,
+  "reasoning_time_s": 15.72947,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "The Kuka robot arm is located in Room 3.",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776422076.5866191,
+      "end": 1776422076.5866203,
+      "duration": 1e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776422076.6090744,
+      "end": 1776422078.9457173,
+      "duration": 2.336643
+    },
+    {
+      "agent": "TopPlanner",
+      "start": 1776422079.0280962,
+      "end": 1776422080.630535,
+      "duration": 1.602439
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776422080.689933,
+      "end": 1776422082.3774018,
+      "duration": 1.687469
+    },
+    {
+      "agent": "QuestionAnswerer",
+      "start": 1776422082.48044,
+      "end": 1776422089.2040372,
+      "duration": 6.723597
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776422089.2546751,
+      "end": 1776422091.0812967,
+      "duration": 1.826622
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776422091.122289,
+      "end": 1776422091.122325,
+      "duration": 3.6e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776422091.2265997,
+      "end": 1776422092.7792423,
+      "duration": 1.552643
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776422092.849237,
+      "end": 1776422092.8492572,
+      "duration": 2e-05
+    }
+  ],
+  "final_position": "R3",
+  "notes": "messages=['The Kuka robot arm is located in Room 3.']"
+}

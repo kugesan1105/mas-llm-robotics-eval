@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s07",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776416148.9310863,
+  "end_time": 1776416155.0712447,
+  "reasoning_time_s": 6.140059,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "inform(The study area is located in room R1.)",
+  "plan_valid": true,
+  "num_plan_actions": 1,
+  "num_executable_actions": 1,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 1,
+  "total_input_tokens": 1328,
+  "total_output_tokens": 47,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1328,
+      "output_tokens": 47,
+      "latency_s": 6.140059,
+      "timestamp": 1776416155.0711775
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

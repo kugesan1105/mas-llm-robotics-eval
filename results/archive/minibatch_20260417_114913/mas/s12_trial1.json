@@ -1,0 +1,60 @@
+{
+  "scenario_id": "s12",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776405101.3113613,
+  "end_time": 1776405104.4755974,
+  "reasoning_time_s": 2.930194,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "I'm sorry, but I cannot answer questions about the president of the USA. My capabilities are limited to navigation and tasks related to moving, identifying, picking, and placing objects.",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776405101.3445673,
+      "end": 1776405101.3445692,
+      "duration": 2e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776405101.3723817,
+      "end": 1776405103.0105665,
+      "duration": 1.638185
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776405103.0636172,
+      "end": 1776405103.0636551,
+      "duration": 3.8e-05
+    },
+    {
+      "agent": "Boss",
+      "start": 1776405103.1809175,
+      "end": 1776405104.472874,
+      "duration": 1.291956
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776405104.47488,
+      "end": 1776405104.4748929,
+      "duration": 1.3e-05
+    }
+  ],
+  "final_position": "R3",
+  "notes": "messages=[\"I'm sorry, but I cannot answer questions about the president of the USA. My capabilities are limited to navigation and tasks related to moving, identifying, picking, and placing objects.\"]"
+}

@@ -1,0 +1,84 @@
+{
+  "scenario_id": "s07",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776427139.9015691,
+  "end_time": 1776427162.9266145,
+  "reasoning_time_s": 22.30988,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "To reach the study area from R3, first go to D3. Then, through R2, proceed to D2, and finally reach Room1 (the study area).",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776427139.9193983,
+      "end": 1776427139.9193997,
+      "duration": 1e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776427139.9883716,
+      "end": 1776427141.4706383,
+      "duration": 1.482267
+    },
+    {
+      "agent": "TopPlanner",
+      "start": 1776427141.5415502,
+      "end": 1776427143.2374141,
+      "duration": 1.695864
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776427143.2752776,
+      "end": 1776427145.2185273,
+      "duration": 1.94325
+    },
+    {
+      "agent": "QuestionAnswerer",
+      "start": 1776427145.3236697,
+      "end": 1776427159.5617137,
+      "duration": 14.238044
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776427159.6326866,
+      "end": 1776427161.3735445,
+      "duration": 1.740858
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776427161.491141,
+      "end": 1776427161.491227,
+      "duration": 8.6e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776427161.5465233,
+      "end": 1776427162.755947,
+      "duration": 1.209424
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776427162.871122,
+      "end": 1776427162.8712075,
+      "duration": 8.6e-05
+    }
+  ],
+  "final_position": "R3",
+  "notes": "messages=['To reach the study area from R3, first go to D3. Then, through R2, proceed to D2, and finally reach Room1 (the study area).']"
+}

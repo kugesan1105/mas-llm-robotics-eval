@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s06",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776404580.415807,
+  "end_time": 1776404669.6844306,
+  "reasoning_time_s": 11.111342,
+  "locomotion_time_s": 78.1570999622345,
+  "perception_time_s": 6.198883056640625e-06,
+  "plan_generated": "goto(D3) ; check_door(D3) ; goto(R2) ; goto(D2) ; check_door(D2) ; goto(R1) ; inform(Please follow me to R1.)",
+  "plan_valid": true,
+  "num_plan_actions": 7,
+  "num_executable_actions": 7,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 1,
+  "total_input_tokens": 1321,
+  "total_output_tokens": 143,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1321,
+      "output_tokens": 143,
+      "latency_s": 11.111342,
+      "timestamp": 1776404591.527179
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R1",
+  "notes": ""
+}

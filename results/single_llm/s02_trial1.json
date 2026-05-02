@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s02",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776414259.2706807,
+  "end_time": 1776414371.7674246,
+  "reasoning_time_s": 5.364037,
+  "locomotion_time_s": 107.1067533493042,
+  "perception_time_s": 0.025695323944091797,
+  "plan_generated": "goto(D3) ; check_door(D3) ; goto(R2) ; find(hammer) ; grab(hammer) ; goto(D3) ; goto(R3) ; inform(I have brought the hammer.)",
+  "plan_valid": true,
+  "num_plan_actions": 8,
+  "num_executable_actions": 8,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 3,
+  "goal_conditions_met": 3,
+  "llm_call_count": 1,
+  "total_input_tokens": 1314,
+  "total_output_tokens": 161,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1314,
+      "output_tokens": 161,
+      "latency_s": 5.364037,
+      "timestamp": 1776414264.634746
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

@@ -1,0 +1,38 @@
+{
+  "scenario_id": "s08",
+  "system": "single_llm",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776387672.8231313,
+  "end_time": 1776387676.109166,
+  "reasoning_time_s": 3.060387,
+  "locomotion_time_s": 0.2044062614440918,
+  "perception_time_s": 0.020717620849609375,
+  "plan_generated": "goto(D3) ; check_door(D3) ; goto(R2) ; goto(D2) ; check_door(D2) ; goto(R1) ; find(chairs) ; goto(D2) ; goto(R2) ; goto(D3) ; goto(R3) ; inform(The chairs are not in R1.)",
+  "plan_valid": true,
+  "num_plan_actions": 12,
+  "num_executable_actions": 12,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 2,
+  "goal_conditions_met": 2,
+  "llm_call_count": 1,
+  "total_input_tokens": 1319,
+  "total_output_tokens": 216,
+  "llm_calls": [
+    {
+      "agent": "SingleLLMPlanner",
+      "model": "gpt-4o-2024-08-06",
+      "input_tokens": 1319,
+      "output_tokens": 216,
+      "latency_s": 3.060387,
+      "timestamp": 1776387675.883642
+    }
+  ],
+  "agent_timings": [],
+  "final_position": "R3",
+  "notes": ""
+}

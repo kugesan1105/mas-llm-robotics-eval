@@ -1,0 +1,258 @@
+{
+  "scenario_id": "s06",
+  "system": "mas",
+  "trial": 1,
+  "success": true,
+  "failure_reason": null,
+  "graceful_failure": true,
+  "start_time": 1776406167.4220998,
+  "end_time": 1776406443.8373365,
+  "reasoning_time_s": 273.770676,
+  "locomotion_time_s": 0.0,
+  "perception_time_s": 0.0,
+  "plan_generated": "R3->D3->R2->D2->R1",
+  "plan_valid": true,
+  "num_plan_actions": 0,
+  "num_executable_actions": 0,
+  "replanning_triggered": false,
+  "replanning_succeeded": null,
+  "num_replans": 0,
+  "goal_conditions_total": 1,
+  "goal_conditions_met": 1,
+  "llm_call_count": 0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "llm_calls": [],
+  "agent_timings": [
+    {
+      "agent": "SpeechAgent",
+      "start": 1776406167.424173,
+      "end": 1776406167.424175,
+      "duration": 2e-06
+    },
+    {
+      "agent": "Boss",
+      "start": 1776406167.4466712,
+      "end": 1776406169.4707432,
+      "duration": 2.024072
+    },
+    {
+      "agent": "TopPlanner",
+      "start": 1776406169.56731,
+      "end": 1776406171.4485228,
+      "duration": 1.881213
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776406171.4560757,
+      "end": 1776406173.7948163,
+      "duration": 2.338741
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776406173.8080647,
+      "end": 1776406173.8081093,
+      "duration": 4.5e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776406173.8210099,
+      "end": 1776406175.3126926,
+      "duration": 1.491683
+    },
+    {
+      "agent": "NavigationSupervisorMain",
+      "start": 1776406175.3198714,
+      "end": 1776406178.614728,
+      "duration": 3.294857
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776406178.6159437,
+      "end": 1776406181.1720748,
+      "duration": 2.556131
+    },
+    {
+      "agent": "FinalDestinationIdentifier",
+      "start": 1776406181.2762976,
+      "end": 1776406185.6342657,
+      "duration": 4.357968
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776406185.6836133,
+      "end": 1776406187.856381,
+      "duration": 2.172768
+    },
+    {
+      "agent": "CurrentPositionIdentifier",
+      "start": 1776406188.0182319,
+      "end": 1776406188.0182683,
+      "duration": 3.6e-05
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776406188.0939934,
+      "end": 1776406191.603757,
+      "duration": 3.509763
+    },
+    {
+      "agent": "WaypointGenerator",
+      "start": 1776406191.6537356,
+      "end": 1776406198.6704402,
+      "duration": 7.016705
+    },
+    {
+      "agent": "NavigationSupervisorSec",
+      "start": 1776406198.6777363,
+      "end": 1776406201.9318368,
+      "duration": 3.254101
+    },
+    {
+      "agent": "FinalNavigationalPlanner",
+      "start": 1776406202.0410542,
+      "end": 1776406207.374998,
+      "duration": 5.333944
+    },
+    {
+      "agent": "NavigationHandlerMain",
+      "start": 1776406207.4202256,
+      "end": 1776406208.770071,
+      "duration": 1.349845
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406208.8939319,
+      "end": 1776406210.6460178,
+      "duration": 1.752086
+    },
+    {
+      "agent": "PathPlanner",
+      "start": 1776406210.754297,
+      "end": 1776406212.1619453,
+      "duration": 1.407648
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406212.2100847,
+      "end": 1776406213.65037,
+      "duration": 1.440285
+    },
+    {
+      "agent": "NavigationHandlerMain",
+      "start": 1776406213.743012,
+      "end": 1776406215.282185,
+      "duration": 1.539173
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406215.4161198,
+      "end": 1776406216.7480423,
+      "duration": 1.331923
+    },
+    {
+      "agent": "PathPlanner",
+      "start": 1776406216.8725462,
+      "end": 1776406222.3278182,
+      "duration": 5.455272
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406222.3558786,
+      "end": 1776406223.562557,
+      "duration": 1.206678
+    },
+    {
+      "agent": "RobotExecutor",
+      "start": 1776406223.690215,
+      "end": 1776406250.6783447,
+      "duration": 26.98813
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406250.6960285,
+      "end": 1776406252.2175434,
+      "duration": 1.521515
+    },
+    {
+      "agent": "NavigationHandlerMain",
+      "start": 1776406252.2701504,
+      "end": 1776406254.3991501,
+      "duration": 2.129
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406254.5109158,
+      "end": 1776406256.3904452,
+      "duration": 1.879529
+    },
+    {
+      "agent": "PathPlanner",
+      "start": 1776406256.475738,
+      "end": 1776406299.146324,
+      "duration": 42.670586
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406299.1767757,
+      "end": 1776406301.3959525,
+      "duration": 2.219177
+    },
+    {
+      "agent": "RobotExecutor",
+      "start": 1776406301.510214,
+      "end": 1776406329.4471047,
+      "duration": 27.936891
+    },
+    {
+      "agent": "NavigationHandlerSec",
+      "start": 1776406329.4484608,
+      "end": 1776406330.9327207,
+      "duration": 1.48426
+    },
+    {
+      "agent": "NavigationHandlerMain",
+      "start": 1776406331.0594296,
+      "end": 1776406332.7768095,
+      "duration": 1.71738
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776406332.896951,
+      "end": 1776406334.2882369,
+      "duration": 1.391286
+    },
+    {
+      "agent": "ObjectSearcher",
+      "start": 1776406334.3928752,
+      "end": 1776406439.023797,
+      "duration": 104.630922
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776406439.066582,
+      "end": 1776406440.8987808,
+      "duration": 1.832199
+    },
+    {
+      "agent": "Speaker",
+      "start": 1776406441.0063832,
+      "end": 1776406441.006417,
+      "duration": 3.4e-05
+    },
+    {
+      "agent": "WorkflowClassifier",
+      "start": 1776406441.055096,
+      "end": 1776406443.7098923,
+      "duration": 2.654796
+    },
+    {
+      "agent": "Finisher",
+      "start": 1776406443.8351367,
+      "end": 1776406443.8351684,
+      "duration": 3.2e-05
+    }
+  ],
+  "final_position": "R1",
+  "notes": "messages=['Please follow the robot as it navigates to the sink.', 'The sink has been found. You can use it now.']"
+}
