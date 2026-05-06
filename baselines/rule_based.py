@@ -2,7 +2,8 @@
 baseline_rule_based.py  --  System A (Rule-Based Replanner)
 
 Represents the classical pre-LLM robotic planning paradigm:
-    keyword matching  +  Dijkstra over the topological graph  +  FSM replanning.
+    keyword matching  +  Dijkstra over the topological graph
+    +  deterministic execute-detect-replan loop with bounded retries.
 
 ZERO LLM calls anywhere in the planning path.
 
@@ -200,7 +201,7 @@ def dijkstra_path(graph: dict[str, dict[str, str]],
 class RuleBasedSystem:
     """
     A flat, classical planner. No LLM. No agents. No reasoning beyond
-    keyword match + Dijkstra + FSM.
+    keyword match + Dijkstra + deterministic execute-detect-replan loop.
 
     Usage:
         sys = RuleBasedSystem(robot=my_robot)
@@ -322,7 +323,7 @@ class RuleBasedSystem:
         log.num_plan_actions = len(plan)
         log.num_executable_actions = len(plan)  # all actions are from a valid vocab
 
-        # ---- 3. FSM execution loop (rule-based replanning) ----
+        # ---- 3. Execute-detect-replan loop (rule-based replanning) ----
         num_replans = 0
         max_replans = 5
         while True:
