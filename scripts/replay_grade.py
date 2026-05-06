@@ -22,9 +22,9 @@ Data sources:
        --verify-jsons the script cross-checks them and reports any drift.
 
 The output matches results/summary_by_system.csv when run on the canonical
-results, demonstrating that the paper's Section VII-D Table V numbers come
-from a transparent aggregation of saved logs (and, for the six MAS
-carry-over rows, from the original Table I as documented).
+results, demonstrating that the paper's Section VII-D comparative-evaluation
+numbers come from a transparent aggregation of saved logs (and, for the six
+MAS carry-over rows, from the original Table I as documented).
 
 The grading rubric itself is implemented in eval/metric_logger.py
 (`grade_outcome`, line 189) and is documented in docs/goal_conditions.md.

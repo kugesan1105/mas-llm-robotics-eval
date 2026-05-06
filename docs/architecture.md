@@ -278,8 +278,9 @@ single source of truth for the architecture.
 | Direct script: `python -m mas.app` | Live operation with audio I/O via `SpeechAgent`. | `recursion_limit=1000` |
 | Comparative evaluation: `python -m eval.run_experiment --systems mas` | Bypasses `SpeechAgent` via the text-in wrapper [`mas/runner.py`](../mas/runner.py) so the same scenario stream is graded for all three systems. | `recursion_limit=150` |
 
-The comparative-evaluation wrapper is what makes the MAS row in Section VII-D
-Table V comparable with the two baselines: it injects the scenario's
+The comparative-evaluation wrapper is what makes the MAS row in the
+Section VII-D comparative-evaluation table comparable with the two
+baselines: it injects the scenario's
 `command` and `door_states` directly as `Raw_user_request_G` and the
 robot-side door state, skipping audio capture and ASR.
 

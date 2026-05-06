@@ -4,10 +4,10 @@ Two tiers of reproduction are supported:
 
 | Tier | Goal | Requires | Time | Cost |
 |------|------|----------|------|------|
-| **Tier 2 — Replay grading** | Verify Section VII-D Table V from saved logs | Python only | < 5 s | $0 |
+| **Tier 2 — Replay grading** | Verify the Section VII-D comparative-evaluation table from saved logs | Python only | < 5 s | $0 |
 | **Tier 1 — Full re-execution** | Re-run the 60 (system × scenario) experiments end-to-end | Webots + GPT-4o key + Python | ~3 h Webots time | ~$5–10 in API |
 
-**Reviewers typically only need Tier 2.** It does not run any LLM call, does not start Webots, and does not consume API credits. It re-aggregates the per-scenario JSON logs in [`results/`](../results/) and produces the same SR / GCR / Exec / hallucination counts as Section VII-D Table V of the manuscript.
+**Reviewers typically only need Tier 2.** It does not run any LLM call, does not start Webots, and does not consume API credits. It re-aggregates the per-scenario JSON logs in [`results/`](../results/) and produces the same SR / GCR / Exec / hallucination counts as the Section VII-D comparative-evaluation table of the manuscript.
 
 Tier 1 is provided for full transparency and for researchers who want to extend the benchmark or re-measure under different conditions.
 
@@ -53,7 +53,7 @@ rule_based      20    65.0%    76.7%   100.0%       0.00        91.49           
 single_llm      20    70.0%    80.0%   100.0%       1.15        96.11               6    20/0
 ```
 
-The three SR / GCR / Hallucination columns are exactly Section VII-D Table V. The script exits with status `0` when there are no unexplained mismatches, and `2` if any per-scenario JSON disagrees with the CSV in a way *not* covered by the two documented override patterns described in [`docs/goal_conditions.md`](goal_conditions.md).
+The three SR / GCR / Hallucination columns are exactly the Section VII-D comparative-evaluation table. The script exits with status `0` when there are no unexplained mismatches, and `2` if any per-scenario JSON disagrees with the CSV in a way *not* covered by the two documented override patterns described in [`docs/goal_conditions.md`](goal_conditions.md).
 
 ### Optional flags
 
@@ -62,7 +62,7 @@ python scripts/replay_grade.py --per-scenario      # also dump per-(system, scen
 python scripts/replay_grade.py --results-dir DIR   # custom results location
 ```
 
-`--per-scenario` is useful if you want to inspect which exact scenarios contributed to each row of Table V.
+`--per-scenario` is useful if you want to inspect which exact scenarios contributed to each row of the comparative-evaluation table.
 
 ---
 
@@ -146,7 +146,7 @@ python -m eval.aggregate_results --results-dir results/
 This regenerates [`results/master_per_scenario.csv`](../results/master_per_scenario.csv),
 [`results/summary_by_system.csv`](../results/summary_by_system.csv),
 [`results/aggregate_report.txt`](../results/aggregate_report.txt), and
-[`results/comparison_table.md`](../results/comparison_table.md). Re-run `python scripts/replay_grade.py` afterwards to verify the new numbers reproduce Table V.
+[`results/comparison_table.md`](../results/comparison_table.md). Re-run `python scripts/replay_grade.py` afterwards to verify the new numbers reproduce the comparative-evaluation table.
 
 ---
 
@@ -159,7 +159,7 @@ results/
 ├── master_per_scenario.csv     # 60 rows (3 systems × 20 scenarios)
 ├── summary_by_system.csv       # 3 rows — one per system
 ├── aggregate_report.txt        # human-readable summary
-├── comparison_table.md         # Table V in Markdown
+├── comparison_table.md         # comparative-evaluation table in Markdown
 ├── mas/
 │   ├── s01_trial1.json
 │   ├── ...
@@ -190,7 +190,7 @@ The following items are documented for transparency. None of them invalidate the
 
 - **MAS fresh runs for s19 and s20 emit a hallucinated arrival pattern** ("successfully arrived at the netball court" / "...canteen") rather than a clean refusal. The Table I record is a clean refusal, and the CSV uses Table I per the documented `fresh_run+table_i_sr` policy. This divergence is one of the items reported by `python scripts/replay_grade.py --verify-jsons`.
 
-- **Single-LLM hallucinated confirmations on s01, s04, s05, s08, s09, s12** are converted from rubric-success to strict-grader-failure at aggregation time (the `strict_grader_hallucination_override` flag). This implements the strict-grading protocol defined in manuscript Appendix A.1.
+- **Single-LLM hallucinated confirmations on s01, s04, s05, s08, s09, s12** are converted from rubric-success to strict-grader-failure at aggregation time (the `strict_grader_hallucination_override` flag). This implements the strict-failure rubric defined in [`README.md`](../README.md) (Evaluation & metrics → The strict failure rubric) and applied by the grader in [`eval/metric_logger.py`](../eval/metric_logger.py).
 
 - **Wall-clock times are network-bound.** Per-scenario times depend on GPT-4o latency; the reported 180.1 s / 96.1 s / 91.5 s averages are from the development network. Local machine variance of ±20 % is expected.
 
@@ -231,6 +231,6 @@ python -m eval.aggregate_results --results-dir results/
 python scripts/replay_grade.py --verify-jsons
 ```
 
-If the second command exits with status `0` and prints SR / GCR matching what `aggregate_results.py` wrote into `summary_by_system.csv`, the run is canonical and reproduces Section VII-D Table V.
+If the second command exits with status `0` and prints SR / GCR matching what `aggregate_results.py` wrote into `summary_by_system.csv`, the run is canonical and reproduces the Section VII-D comparative-evaluation table.
 
 For methodology details on how SR / GCR / Exec are defined per scenario, see [`docs/goal_conditions.md`](goal_conditions.md).

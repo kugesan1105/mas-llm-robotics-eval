@@ -47,16 +47,18 @@ subtypes:
 - **Baseline B** (ours) re-invokes GPT-4o open-loop on each execution failure.
   Because the new call has no shared state with the previous call beyond the
   current robot position and known door states, it can produce a hallucinated
-  retrieval claim in the same way as the initial call. The 6 hallucinated
-  user-facing confirmations enumerated in manuscript Appendix A.2 (s01, s04,
-  s05, s08, s09, s12) are this exact failure pattern.
+  retrieval claim in the same way as the initial call. The six user-facing-
+  output failures enumerated in [`README.md`](../README.md) (Failure-case
+  analysis) and [`docs/goal_conditions.md`](goal_conditions.md) §3.2 — five
+  hallucinated retrieval/grounding claims (s01, s04, s05, s08, s09) plus one
+  scope-handling failure (s12) — are this exact failure pattern.
 
 - **MAS** (ours) routes the failure to the strategic layer with the full
   `GraphState`. Because `NavigationsupervisorMain` sees both the original
   mission context and the perception-layer evidence, the standard recovery
   path is to re-invoke `WaypointGenerator` with the updated topological
   constraint rather than to emit a completion claim. The 0 hallucinated
-  retrieval/grounding confirmations reported in Section VII-D Table V at
+  retrieval/grounding confirmations reported in the Section VII-D comparative-evaluation table at
   n = 20 is the empirical consequence of this design.
 
 ---
@@ -79,7 +81,7 @@ subtypes:
   rather than reimplementing them in our 20-scenario benchmark. The
   architectural claims above follow from the published descriptions of those
   systems and are not based on a re-run on our scenarios. Manuscript Section
-  VII-D and Appendix A clearly note this.
+  VII-D notes this.
 
 - The benchmark is n = 20 (ablation-style across architectural classes), not
   a statistically powered evaluation. Manuscript Section VII-D paragraph 1
@@ -90,6 +92,7 @@ subtypes:
 
 ## See also
 
-- Manuscript Section VII-D and Appendix A.2.
+- Manuscript Section VII-D.
+- [`README.md`](../README.md) — Failure-case analysis with verbatim user-facing outputs.
 - [`docs/architecture.md`](architecture.md) §2.2 — error escalation in code.
 - [`docs/goal_conditions.md`](goal_conditions.md) §3 — per-scenario hallucination outcomes.

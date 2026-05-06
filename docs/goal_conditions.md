@@ -1,11 +1,12 @@
-# Goal-Conditions Framework — Supplementary Appendix
+# Goal-Conditions Framework — Supplementary
 
-This appendix documents the predicate-level grading rubric used to compute the
-Success Rate (SR), Goal-Conditions Recall (GCR), and Executability (Exec)
-metrics in Section VII-D Table V of the manuscript. The rubric is implemented
-in [`eval/metric_logger.py`](../eval/metric_logger.py) (function `grade_outcome`,
-line 189) and is applied identically to all three systems (rule-based,
-non-agentic LLM, MAS).
+This document is the long-form companion to manuscript Section VII-D. It
+defines the predicate-level grading rubric used to compute the Success Rate
+(SR), Goal-Conditions Recall (GCR), and Executability (Exec) metrics
+reported in the comparative evaluation table. The rubric is implemented in
+[`eval/metric_logger.py`](../eval/metric_logger.py) (function
+`grade_outcome`, line 189) and is applied identically to all three systems
+(rule-based, non-agentic LLM, MAS).
 
 The rubric follows the goal-conditions formalism introduced by **VirtualHome**
 (Puig et al., CVPR 2018) and adapted by **ProgPrompt** (Singh et al., ICRA 2023,
@@ -164,11 +165,12 @@ one (s07) is intent-disambiguation under lexical matching.
 
 **Non-Agentic LLM: SR = 14/20 = 70.0%, GCR = 24/30 = 80.0%, Exec = 100%.**
 
-Six failures match the per-scenario hallucination enumeration in manuscript
-Appendix A.2: s01, s05, s09 (subtype a — hallucinated retrieval of absent
-object); s04 (subtype b — infeasible-action claim under blocked paths);
-s08 (subtype c — false-absence report); s12 (subtype d — fabricated
-out-of-scope answer).
+The six failures fall under the four failure subtypes named in the
+manuscript Section VII-D (also enumerated in [`README.md`](../README.md)
+under "How the numbers are graded"): s01, s05, s09 (subtype a —
+hallucinated retrieval of absent object); s04 (subtype b —
+infeasible-action claim under blocked paths); s08 (subtype c —
+false-absence report); s12 (subtype d — fabricated out-of-scope answer).
 
 ### 3.3 Hierarchical MAS (proposed)
 
