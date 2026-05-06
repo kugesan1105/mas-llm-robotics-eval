@@ -17,11 +17,10 @@ motion planner, same GPT-4o backbone, same scenario-supplied door states:
 | Baseline B — Non-Agentic LLM planner | 70.0 % | 80.0 % | 100 % | **5** |
 | **Hierarchical MAS (proposed)** | **90.0 %** | **83.3 %** | **100 %** | **0** |
 
-**Headline:** two gaps appear under identical model conditions — a
-20-percentage-point Success Rate gap (90 vs 70) **and** a categorical
-hallucination gap (0 vs 5). The non-agentic LLM emits five user-facing
-confirmations that contradict ground truth (e.g., *"I have brought the
-hammer"* when there is no hammer); the proposed MAS emits zero.
+**Headline:** the gap is in the hallucination column, not the SR column.
+The non-agentic LLM emits five user-facing confirmations that contradict
+ground truth (e.g., *"I have brought the hammer"* when there is no
+hammer); the proposed MAS emits zero.
 
 Verify the numbers in 5 seconds, no Webots and no API key:
 
@@ -57,6 +56,7 @@ python scripts/replay_grade.py --verify-jsons
 | [`docs/replanning_landscape.md`](docs/replanning_landscape.md) | Side-by-side replanning behaviour for SayCan, Text2Motion, ProgPrompt, Baseline B, and MAS — the architectural contrast referenced in Section VII-D. |
 | [`docs/reproduction.md`](docs/reproduction.md) | Two-tier reproduction guide: 5-second replay grading and full Webots re-execution. Includes per-scenario door-state table, known caveats, and troubleshooting. |
 | [`docs/prompts.md`](docs/prompts.md) | Per-agent prompt-file mapping and the GPT-4o configuration used for all LLM calls. |
+| [`docs/why_not_just_a_better_llm.md`](docs/why_not_just_a_better_llm.md) | Why the MAS-vs-Baseline-B gap is expected to be stable as language models improve — the gap is structural, not a model property. |
 
 ---
 
@@ -196,70 +196,22 @@ Both failures are perception- or execution-layer, not generative reasoning:
 
 ## Why MAS produces zero hallucinated confirmations
 
-The architectural difference responsible for the gap is **hierarchical
-error escalation**. When a perception agent (e.g., `DoorChecker`) reports a
-state inconsistent with the current plan, the failure is propagated to a
+The architectural mechanism is **hierarchical error escalation**. When a
+perception agent (e.g., `DoorChecker`) reports a state inconsistent with
+the current plan, the failure is propagated through `ErrorHandler` to a
 strategic agent (`NavigationsupervisorMain`) carrying the full mission
 context from the shared `GraphState`, which re-invokes `WaypointGenerator`
-under the updated environmental constraint.
+under the updated environmental constraint. If no valid path exists, the
+system aborts and informs the user. The LLM is never asked the question
+"did you complete the task?" while the system is in an error state, so it
+cannot fabricate a completion claim.
 
-The other systems handle replanning differently:
-
-- **Baseline B** re-invokes GPT-4o open-loop with no preserved state, so the new call can produce a hallucinated retrieval claim in the same way as the initial call.
-- **SayCan** re-decides per step via affordance scoring; when affordances drop, it can degenerate into a hallucinated completion claim.
-- **Text2Motion** does not regenerate the task plan; the geometric replanner has no fallback at the task level.
-- **ProgPrompt** uses pre-baked `assert`/`else` recovery clauses bounded by what the program author anticipated at generation time.
-
-The full side-by-side breakdown is in
-[`docs/replanning_landscape.md`](docs/replanning_landscape.md). The code
-realisation of the escalation chain is in
-[`docs/architecture.md`](docs/architecture.md) §2.2.
-
----
-
-## Won't a stronger LLM close the gap?
-
-A natural objection: *the gap is just hallucination, and hallucination is a
-property of the model. GPT-5 / Claude / Gemini will hallucinate less, so the
-architectural advantage will shrink as models improve.*
-
-Four observations make this defensible against the objection:
-
-1. **The gap is not only hallucination.** The Success Rate gap is 20
-   percentage points (90 vs 70). Even under a hypothetical zero-hallucination
-   LLM, Baseline B's six hallucinated runs would convert to correct outcomes
-   at best, lifting it to 76 % — still 14 points below the MAS. The remaining
-   gap is structural.
-
-2. **Same backbone in both systems.** All three systems use the same GPT-4o
-   model with the same temperature. The MAS produces 0 hallucinations and
-   Baseline B produces 5 *under identical model conditions*. Attributing
-   the gap to "the model is bad" requires explaining why the same model
-   behaves differently in the two architectures.
-
-3. **Hallucination is an architectural symptom, not a model property.**
-   Baseline B re-invokes the LLM open-loop on execution failure, with no
-   preserved mission state. When execution diverges from plan, the model
-   has to reconstruct the situation from scratch and confabulates. The MAS
-   preserves the full mission context in its shared `GraphState` and routes
-   failures to a strategic agent that already holds the original
-   expectation. The MAS is *never asked* to make up a completion claim
-   because it never loses track of what it was supposed to do. A stronger
-   LLM lowers the rate at which Baseline B confabulates, but does not
-   change the property that it can still be asked to. SayCan (running on
-   PaLM-540B) exhibits the same degeneration into completion claims when
-   per-step affordances drop in blocked-path scenarios.
-
-4. **MAS's residual failures are not reasoning errors.** The MAS's two
-   failures (s02, s08) are perception-layer (visual recognition miss) and
-   execution-layer (workflow loop closed early before return-to-user). A
-   stronger LLM does not fix either of those. So as models improve,
-   Baseline B's error budget — which is dominated by LLM-driven failures —
-   shrinks, but the MAS's headroom is dominated by perception and
-   execution components that are orthogonal to the LLM.
-
-The architectural gap is therefore stable to model choice, not contingent
-on it.
+For the side-by-side comparison with SayCan / Text2Motion / ProgPrompt /
+Baseline B, see [`docs/replanning_landscape.md`](docs/replanning_landscape.md).
+For the code realisation see
+[`docs/architecture.md`](docs/architecture.md) §2.2. For why this
+architectural gap is expected to be stable as language models improve,
+see [`docs/why_not_just_a_better_llm.md`](docs/why_not_just_a_better_llm.md).
 
 ---
 
