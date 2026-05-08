@@ -51,12 +51,9 @@ python scripts/replay_grade.py --verify-jsons
 
 | Document | Covers |
 |----------|--------|
-| [`docs/architecture.md`](docs/architecture.md) | Five-tier agent hierarchy, every node mapped to a source file, the `GraphState` schema, and the code-to-paper mapping. Companion to manuscript Section III. |
-| [`docs/goal_conditions.md`](docs/goal_conditions.md) | Full predicate-level grading rubric, per-scenario goal-condition lists, per-(system, scenario) score tables, and the SR / GCR / Exec aggregation arithmetic. Companion to manuscript Section VII-D. |
-| [`docs/replanning_landscape.md`](docs/replanning_landscape.md) | Side-by-side replanning behaviour for SayCan, Text2Motion, ProgPrompt, Baseline B, and MAS — the architectural contrast referenced in Section VII-D. |
+| [`docs/architecture.md`](docs/architecture.md) | Five-tier agent hierarchy, every node mapped to a source file, the `GraphState` schema, the per-agent prompt mapping, and the code-to-paper mapping. Companion to manuscript Section III. |
+| [`docs/evaluation.md`](docs/evaluation.md) | Comprehensive companion to manuscript Section VII-D: predicate-level grading rubric, per-scenario goal-condition lists, per-(system, scenario) score tables, the SR / GCR / Exec aggregation arithmetic, the replanning-landscape comparison, and the argument for why the gap is stable to model choice. |
 | [`docs/reproduction.md`](docs/reproduction.md) | Two-tier reproduction guide: 5-second replay grading and full Webots re-execution. Includes per-scenario door-state table, known caveats, and troubleshooting. |
-| [`docs/prompts.md`](docs/prompts.md) | Per-agent prompt-file mapping and the GPT-4o configuration used for all LLM calls. |
-| [`docs/why_not_just_a_better_llm.md`](docs/why_not_just_a_better_llm.md) | Why the MAS-vs-Baseline-B gap is expected to be stable as language models improve — the gap is structural, not a model property. |
 
 ---
 
@@ -99,7 +96,7 @@ the run aborted, etc.) and returns the predicate-level score.
 
 Predicate definitions, the outcome-dict schema, per-scenario goal-condition
 lists, and per-(system, scenario) score tables are in
-[`docs/goal_conditions.md`](docs/goal_conditions.md).
+[`docs/evaluation.md`](docs/evaluation.md).
 
 ### The strict failure rubric
 
@@ -136,7 +133,7 @@ used for Table I of the manuscript. Re-grading those six under the strict
 rubric would shift MAS GCR upward to **86.7 %** or **90.0 %** depending on
 how an edge case in s08 is read; the conservative **83.3 %** is what
 matches the actual graded-data denominator. The full carry-over math is in
-[`docs/goal_conditions.md`](docs/goal_conditions.md) §3.3.
+[`docs/evaluation.md`](docs/evaluation.md) §3.3.
 
 ### Why GCR can sit below SR for the MAS row
 
@@ -207,11 +204,10 @@ system aborts and informs the user. The LLM is never asked the question
 cannot fabricate a completion claim.
 
 For the side-by-side comparison with SayCan / Text2Motion / ProgPrompt /
-Baseline B, see [`docs/replanning_landscape.md`](docs/replanning_landscape.md).
-For the code realisation see
-[`docs/architecture.md`](docs/architecture.md) §2.2. For why this
-architectural gap is expected to be stable as language models improve,
-see [`docs/why_not_just_a_better_llm.md`](docs/why_not_just_a_better_llm.md).
+Baseline B, see [`docs/evaluation.md`](docs/evaluation.md) §5. For the
+code realisation see [`docs/architecture.md`](docs/architecture.md) §2.2.
+For why this architectural gap is expected to be stable as language
+models improve, see [`docs/evaluation.md`](docs/evaluation.md) §6.
 
 ---
 
@@ -237,7 +233,7 @@ Loaded 60 per-scenario rows from results/master_per_scenario.csv
     - 10 documented overrides (CSV correctly diverges from JSON):
         single_llm/s01  override=strict_grader_hallucination   ...
         ...
-    - 6 CSV rows have no JSON log (Table I carry-over -- see docs/goal_conditions.md §3.3)
+    - 6 CSV rows have no JSON log (Table I carry-over -- see docs/evaluation.md §3.3)
 
 System          n     SR    GCR    Exec   LLM/run  Wall_s/run  Hallucinations  fresh/table_i
 mas            20  90.0%  83.3%  100.0%    35.38      180.13               0    14/6

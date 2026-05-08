@@ -14,7 +14,7 @@ Data sources:
        `source` column indicating whether the row was produced by a fresh
        Webots run ("fresh_run+table_i_sr" or "fresh_run") or carried over
        unchanged from the original Table I of the manuscript ("table_i").
-       See docs/goal_conditions.md, section 3.3 footnote.
+       See docs/evaluation.md, section 3.3 footnote.
 
     2. results/<system>/<scenario_id>_trial<N>.json -- the per-run JSON log
        saved by eval/metric_logger.RunLog.save() for each fresh run. These
@@ -27,7 +27,7 @@ numbers come from a transparent aggregation of saved logs (and, for the six
 MAS carry-over rows, from the original Table I as documented).
 
 The grading rubric itself is implemented in eval/metric_logger.py
-(`grade_outcome`, line 189) and is documented in docs/goal_conditions.md.
+(`grade_outcome`, line 189) and is documented in docs/evaluation.md.
 This script does not re-apply the rubric -- it aggregates the predicate
 counts already recorded by the system that ran each scenario.
 
@@ -134,7 +134,7 @@ def aggregate(rows):
 
 def _classify_override(csv_row):
     """Identify documented override types that legitimately make the CSV
-    diverge from the JSON. See docs/goal_conditions.md for definitions."""
+    diverge from the JSON. See docs/evaluation.md for definitions."""
     reason = (csv_row.get("failure_reason") or "")
     source = (csv_row.get("source") or "")
     if "strict_grader_hallucination_override" in reason:
@@ -267,7 +267,7 @@ def main():
             for sys_name, sid, kind, csv_state, json_state in documented:
                 print(f"        {sys_name}/{sid}  override={kind:<28s}  csv[{csv_state}]  json[{json_state}]")
         if missing:
-            print(f"    - {missing} CSV rows have no JSON log (Table I carry-over -- see docs/goal_conditions.md §3.3 footnote)")
+            print(f"    - {missing} CSV rows have no JSON log (Table I carry-over -- see docs/evaluation.md §3.3 footnote)")
         if unexplained:
             print(f"    - {len(unexplained)} UNEXPLAINED mismatches (real drift):", file=sys.stderr)
             for sys_name, sid, csv_state, json_state in unexplained:

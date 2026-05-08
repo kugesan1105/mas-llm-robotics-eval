@@ -44,7 +44,7 @@ Loaded 60 per-scenario rows from results/master_per_scenario.csv
         single_llm/s01  override=strict_grader_hallucination   ...
         ...
         mas/s02  override=table_i_sr                            ...
-    - 6 CSV rows have no JSON log (Table I carry-over -- see docs/goal_conditions.md §3.3 footnote)
+    - 6 CSV rows have no JSON log (Table I carry-over -- see docs/evaluation.md §3.3 footnote)
 
 System           n       SR      GCR     Exec    LLM/run   Wall_s/run  Hallucinations  fresh/table_i
 ----------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ rule_based      20    65.0%    76.7%   100.0%       0.00        91.49           
 single_llm      20    70.0%    80.0%   100.0%       1.15        96.11               6    20/0
 ```
 
-The three SR / GCR / Hallucination columns are exactly the Section VII-D comparative-evaluation table. The script exits with status `0` when there are no unexplained mismatches, and `2` if any per-scenario JSON disagrees with the CSV in a way *not* covered by the two documented override patterns described in [`docs/goal_conditions.md`](goal_conditions.md).
+The three SR / GCR / Hallucination columns are exactly the Section VII-D comparative-evaluation table. The script exits with status `0` when there are no unexplained mismatches, and `2` if any per-scenario JSON disagrees with the CSV in a way *not* covered by the two documented override patterns described in [`docs/evaluation.md`](evaluation.md).
 
 ### Optional flags
 
@@ -175,7 +175,7 @@ Each per-scenario JSON contains the `RunLog` schema defined at
 [`eval/metric_logger.py`](../eval/metric_logger.py): scenario identity, success
 flag, failure reason (if any), per-agent timings, LLM call counts, plan
 generated, executable-action count, goal-conditions met/total. See
-[`docs/goal_conditions.md`](goal_conditions.md) for how those fields aggregate
+[`docs/evaluation.md`](evaluation.md) for how those fields aggregate
 into SR / GCR / Exec.
 
 ---
@@ -184,7 +184,7 @@ into SR / GCR / Exec.
 
 The following items are documented for transparency. None of them invalidate the reported numbers, but a careful re-runner should be aware:
 
-- **MAS scenarios s05, s08, s14, s16, s17, s18 were not re-run for the comparative evaluation** — the manuscript's Table I assessment for those rows was carried over (`source=table_i` in `master_per_scenario.csv`). See `goal_conditions.md` §3.3 footnote. Re-running them in Tier 1 will produce richer logs and may shift the MAS GCR upward by 3–7 points.
+- **MAS scenarios s05, s08, s14, s16, s17, s18 were not re-run for the comparative evaluation** — the manuscript's Table I assessment for those rows was carried over (`source=table_i` in `master_per_scenario.csv`). See `evaluation.md` §3.3 footnote. Re-running them in Tier 1 will produce richer logs and may shift the MAS GCR upward by 3–7 points.
 
 - **MAS s04 fresh run can hit the LangGraph recursion limit (150).** The Table I assessment ("identified all paths blocked; informed user") is used in the CSV instead of the failed fresh-run outcome. To avoid this in your own runs, either increase the `recursion_limit` argument in [`mas/runner.py`](../mas/runner.py) or rely on the carry-over.
 
@@ -233,4 +233,4 @@ python scripts/replay_grade.py --verify-jsons
 
 If the second command exits with status `0` and prints SR / GCR matching what `aggregate_results.py` wrote into `summary_by_system.csv`, the run is canonical and reproduces the Section VII-D comparative-evaluation table.
 
-For methodology details on how SR / GCR / Exec are defined per scenario, see [`docs/goal_conditions.md`](goal_conditions.md).
+For methodology details on how SR / GCR / Exec are defined per scenario, see [`docs/evaluation.md`](evaluation.md).
