@@ -32,28 +32,19 @@ python scripts/replay_grade.py --verify-jsons
 
 ---
 
-## What's in this repository
+## Repository layout
 
-| Path | Contents |
-|------|----------|
-| [`mas/`](mas/) | The proposed Hierarchical MAS. 17 agent classes in [`mas/agents/`](mas/agents/), 21-node LangGraph state machine in [`mas/app.py`](mas/app.py), shared topological/RRT tools in [`mas/tools/`](mas/tools/). |
-| [`baselines/`](baselines/) | Baseline A ([`baselines/rule_based.py`](baselines/rule_based.py)) and Baseline B ([`baselines/single_llm.py`](baselines/single_llm.py)) — the two systems compared against MAS. |
-| [`eval/`](eval/) | Experiment orchestrator ([`eval/run_experiment.py`](eval/run_experiment.py)), grader ([`eval/metric_logger.py`](eval/metric_logger.py)), and aggregator ([`eval/aggregate_results.py`](eval/aggregate_results.py)). |
-| [`scenarios/`](scenarios/) | The 20 benchmark scenarios in [`scenarios/scenarios.json`](scenarios/scenarios.json) — one JSON object per scenario with `command`, `expected_destination`, `expected_behavior`, `door_states`, and ground-truth world state. |
-| [`results/`](results/) | Canonical per-scenario logs (60 rows = 3 systems × 20 scenarios), aggregate CSVs, and the human-readable summary. |
-| [`scripts/`](scripts/) | Reviewer-facing utilities; the most important is [`scripts/replay_grade.py`](scripts/replay_grade.py). |
-| [`webots/`](webots/) | The Webots world ([`webots/worlds/home.wbt`](webots/worlds/home.wbt)) and the Pioneer 3-AT controller. |
-| [`prompts/`](prompts/) | One prompt per LLM-driven agent. |
-| [`comm/`](comm/), [`robot_server/`](robot_server/) | TCP/JSON bridge between the LLM-side orchestrator and the Webots-side controller. |
-| [`docs/`](docs/) | Long-form documentation — see index below. |
-
-### Documentation index
-
-| Document | Covers |
-|----------|--------|
-| [`docs/architecture.md`](docs/architecture.md) | Five-tier agent hierarchy, every node mapped to a source file, the `GraphState` schema, the per-agent prompt mapping, and the code-to-paper mapping. Companion to manuscript Section III. |
-| [`docs/evaluation.md`](docs/evaluation.md) | Comprehensive companion to manuscript Section VII-D: predicate-level grading rubric, per-scenario goal-condition lists, per-(system, scenario) score tables, the SR / GCR / Exec aggregation arithmetic, the replanning-landscape comparison, and the argument for why the gap is stable to model choice. |
-| [`docs/reproduction.md`](docs/reproduction.md) | Two-tier reproduction guide: 5-second replay grading and full Webots re-execution. Includes per-scenario door-state table, known caveats, and troubleshooting. |
+- [`mas/`](mas/) — the proposed system (17 agents, 21-node LangGraph in [`mas/app.py`](mas/app.py)).
+- [`baselines/`](baselines/) — Baseline A ([`rule_based.py`](baselines/rule_based.py)) and Baseline B ([`single_llm.py`](baselines/single_llm.py)).
+- [`eval/`](eval/) — experiment orchestrator, grader, aggregator.
+- [`scenarios/scenarios.json`](scenarios/scenarios.json) — the 20 benchmark scenarios.
+- [`results/`](results/) — canonical per-scenario logs and aggregate CSVs.
+- [`scripts/replay_grade.py`](scripts/replay_grade.py) — 5-second number-verification utility.
+- [`webots/`](webots/), [`prompts/`](prompts/), [`comm/`](comm/), [`robot_server/`](robot_server/) — supporting code.
+- [`docs/`](docs/) — long-form documentation:
+  [`architecture.md`](docs/architecture.md) (system internals),
+  [`evaluation.md`](docs/evaluation.md) (rubric + score tables + Section VII-D defences),
+  [`reproduction.md`](docs/reproduction.md) (how to re-run).
 
 ---
 
