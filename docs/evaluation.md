@@ -301,8 +301,8 @@ invalidates the originally generated plan.
 | **SayCan** | [3] (Ahn et al., CoRL 2022) | Per-step re-decision via myopic affordance scoring; no committed multi-step plan to invalidate. | Affordance scoring at each step. |
 | **Text2Motion** | [4] (Lin et al., 2023) | No task-level replanning; geometric re-planning of the remaining low-level skills under the updated obstacle map. | Low-level motion planner only. |
 | **ProgPrompt** | [5] (Singh et al., ICRA 2023) | Pre-baked `assert`/`else` recovery clauses inside the generated Python-like program; the LLM is not re-invoked at runtime. | Whatever recovery branch the LLM included at generation time. |
-| **Baseline B (this work)** | [`baselines/single_llm.py`](../baselines/single_llm.py) | Open-loop LLM re-invocation on execution failure with the updated state. The full plan is regenerated each time. | A fresh GPT-4o call with no inter-call shared state. |
-| **MAS (this work)** | [`mas/app.py`](../mas/app.py); see [`docs/architecture.md`](architecture.md) §2.2 | Hierarchical `ErrorHandler` escalation to the strategic `NavigationsupervisorMain` carrying the full `GraphState` mission context; the strategic layer re-invokes `WaypointGenerator` under the updated environmental constraint. | A targeted strategic agent (not the whole graph), with full mission context. |
+| **Baseline B (this work)** | [`baselines/single_llm.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/baselines/single_llm.py) | Open-loop LLM re-invocation on execution failure with the updated state. The full plan is regenerated each time. | A fresh GPT-4o call with no inter-call shared state. |
+| **MAS (this work)** | [`mas/app.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/app.py) (companion code repo) | Hierarchical `ErrorHandler` escalation to the strategic `NavigationsupervisorMain` carrying the full `GraphState` mission context; the strategic layer re-invokes `WaypointGenerator` under the updated environmental constraint. | A targeted strategic agent (not the whole graph), with full mission context. |
 
 ### 5.2 What this means for hallucination exposure
 
@@ -349,8 +349,8 @@ report, (d) fabricated out-of-scope answer:
 
 | Step | File | Responsibility |
 |------|------|----------------|
-| Failure detection (perception) | [`mas/agents/door_status_checker.py`](../mas/agents/door_status_checker.py), [`mas/agents/object_searcher.py`](../mas/agents/object_searcher.py) | Visual confirmation of doors / objects. |
-| Failure detection (execution) | `Robot_executor` in [`mas/app.py`](../mas/app.py) | Returns failure status on RRT-path execution failure. |
+| Failure detection (perception) | [`mas/agents/door_status_checker.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/agents/door_status_checker.py), [`mas/agents/object_searcher.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/agents/object_searcher.py) | Visual confirmation of doors / objects. |
+| Failure detection (execution) | `Robot_executor` in [`mas/app.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/app.py) | Returns failure status on RRT-path execution failure. |
 | Tactical-vs-strategic routing | `Router_navhansec` and `Router_errorhandler` in `mas/app.py` | Decide whether the failure can be retried locally (re-plan path) or must escalate. |
 | Strategic re-evaluation | `Navigation_supervisor_main` in `mas/app.py`, `mas/agents/navigational_supervisor_main.py` | Re-evaluates the topological graph under the updated state and re-invokes `WaypointGenerator`. |
 | Mission-level cancellation | `Router_errorhandler` returning `"WorkflowClassifier"` | When even strategic re-plan fails, escalate to task re-classification (e.g., abort the retrieval task and inform the user that the target is unreachable). |
@@ -404,8 +404,9 @@ sometimes confabulates a completion claim consistent with the *plan it
 just regenerated*, rather than with the *world state it observed*.
 
 The MAS preserves the full mission context in its shared `GraphState`
-(see [`docs/architecture.md`](architecture.md) §4) and routes failures to
-a strategic agent that already holds the original expectation. Concretely,
+(see [`mas/app.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/app.py)
+in the companion code repo) and routes failures to a strategic agent that
+already holds the original expectation. Concretely,
 when `DoorChecker` reports an unexpected closed door:
 
 1. The failure is escalated through `ErrorHandler` to

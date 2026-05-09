@@ -1,8 +1,19 @@
 # mas-llm-robotics-eval
 
-Reproduction package for **"Enabling Robotic Cognition: A Hierarchical
-Multi-Agentic System for LLM-Driven Autonomous Problem-Solving in Robotics"**
-(IEEE Access, manuscript ID **Access-2026-09207**).
+Evaluation harness, scenarios, results, scoring scripts, grading rubric,
+and reproduction guide for **"Enabling Robotic Cognition: A Hierarchical
+Multi-Agentic System for LLM-Driven Autonomous Problem-Solving in
+Robotics"** (IEEE Access, manuscript ID **Access-2026-09207**).
+
+The system source code (the proposed Hierarchical MAS, the two baselines,
+the per-agent prompts, the Webots world and controller, and the TCP/JSON
+bridge) lives in the companion repository:
+
+> **[mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics)**
+
+This repository is self-contained for the **5-second number-verification**
+flow (Tier-2). For end-to-end re-execution in Webots (Tier-1) you also
+need the companion repository — see the reproduction guide.
 
 ---
 
@@ -34,17 +45,18 @@ python scripts/replay_grade.py --verify-jsons
 
 ## Repository layout
 
-- [`mas/`](mas/) — the proposed system (17 agents, 21-node LangGraph in [`mas/app.py`](mas/app.py)).
-- [`baselines/`](baselines/) — Baseline A ([`rule_based.py`](baselines/rule_based.py)) and Baseline B ([`single_llm.py`](baselines/single_llm.py)).
 - [`eval/`](eval/) — experiment orchestrator, grader, aggregator.
 - [`scenarios/scenarios.json`](scenarios/scenarios.json) — the 20 benchmark scenarios.
 - [`results/`](results/) — canonical per-scenario logs and aggregate CSVs.
 - [`scripts/replay_grade.py`](scripts/replay_grade.py) — 5-second number-verification utility.
-- [`webots/`](webots/), [`prompts/`](prompts/), [`comm/`](comm/), [`robot_server/`](robot_server/) — supporting code.
 - [`docs/`](docs/) — long-form documentation:
-  [`architecture.md`](docs/architecture.md) (system internals),
   [`evaluation.md`](docs/evaluation.md) (rubric + score tables + Section VII-D defences),
   [`reproduction.md`](docs/reproduction.md) (how to re-run).
+
+The proposed system, both baselines, the per-agent prompts, the Webots
+world, and the TCP/JSON bridge live in the companion repository:
+[mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics). The
+README of the code repo describes the system internals at a high level.
 
 ---
 
@@ -196,7 +208,8 @@ cannot fabricate a completion claim.
 
 For the side-by-side comparison with SayCan / Text2Motion / ProgPrompt /
 Baseline B, see [`docs/evaluation.md`](docs/evaluation.md) §5. For the
-code realisation see [`docs/architecture.md`](docs/architecture.md) §2.2.
+code realisation see the companion code repository
+[mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics).
 For why this architectural gap is expected to be stable as language
 models improve, see [`docs/evaluation.md`](docs/evaluation.md) §6.
 
@@ -243,15 +256,26 @@ Add `--per-scenario` to also dump the per-(system, scenario) detail.
 ## Try it — full re-execution in Webots
 
 End-to-end re-run of all 60 (system × scenario) experiments. Requires
-**Webots R2023b+**, an **OpenAI API key**, and a Python env with the deps
-in [`requirements.txt`](requirements.txt). Estimated cost: ~3 hours of
-Webots wall-clock plus ~$5–10 in GPT-4o API.
+**both repositories** (this one for the eval harness; the
+[mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics) repo
+for the system code), **Webots R2023b+**, an **OpenAI API key**, and a
+Python env with the deps in the code repo's `requirements.txt`. Estimated
+cost: ~3 hours of Webots wall-clock plus ~$5–10 in GPT-4o API.
 
 The system runs as a client–server stack across three terminals:
 
 ```bash
+# Clone both repos side by side
+git clone https://github.com/kugesan1105/mas-llm-robotics
+git clone https://github.com/kugesan1105/mas-llm-robotics-eval
+cd mas-llm-robotics-eval
+
+# Install deps from the code repo and make it importable
+pip install -r ../mas-llm-robotics/requirements.txt
+export PYTHONPATH=$PYTHONPATH:$(pwd)/../mas-llm-robotics
+
 # Terminal 1 — Webots GUI
-#   File → Open World → webots/worlds/home.wbt
+#   File → Open World → ../mas-llm-robotics/webots/worlds/home.wbt
 #   Manually set door positions to match the scenario's `door_states` field.
 
 # Terminal 2 — TCP bridge

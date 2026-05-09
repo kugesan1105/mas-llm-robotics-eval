@@ -70,19 +70,28 @@ python scripts/replay_grade.py --results-dir DIR   # custom results location
 
 ### Prerequisites
 
-1. **Webots simulator (R2023b or newer).** Install from <https://cyberbotics.com/>. Tested on Ubuntu 22.04 (WSL) and Windows 11.
+1. **Both repositories cloned side by side.** Tier 1 needs the system code from the companion repository [mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics) in addition to this evaluation repository.
 
-2. **A conda env named `agent`** (or any equivalent venv) with the dependencies pinned in [`requirements.txt`](../requirements.txt). The development env was conda-managed:
+    ```bash
+    git clone https://github.com/kugesan1105/mas-llm-robotics
+    git clone https://github.com/kugesan1105/mas-llm-robotics-eval
+    cd mas-llm-robotics-eval
+    ```
+
+2. **Webots simulator (R2023b or newer).** Install from <https://cyberbotics.com/>. Tested on Ubuntu 22.04 (WSL) and Windows 11.
+
+3. **A conda env named `agent`** (or any equivalent venv) with the dependencies pinned in the code repo's `requirements.txt`. The development env was conda-managed:
 
     ```bash
     conda create -n agent python=3.11
     conda activate agent
-    pip install -r requirements.txt
+    pip install -r ../mas-llm-robotics/requirements.txt
+    export PYTHONPATH=$PYTHONPATH:$(pwd)/../mas-llm-robotics
     ```
 
    `requirements.txt` was produced by `pip freeze` of the development environment and includes lines such as `langchain==0.3.25`, `langgraph==0.4.7`, `openai==1.93.0`, `opencv-python==4.12.0.88`, `pygame==2.6.1`, `faiss-cpu==1.11.0`, `numpy==2.2.6`. Lines with `@ file:///home/conda/...` are conda-managed and will be ignored by pip; replace them with their pip-installable equivalents if needed.
 
-3. **An OpenAI API key with access to `gpt-4o`.** Set it once per shell session:
+4. **An OpenAI API key with access to `gpt-4o`.** Set it once per shell session:
 
     ```bash
     export OPENAI_API_KEY=sk-...
@@ -96,9 +105,9 @@ The system runs as a client–server stack: the Webots controller and the LLM-si
 
 | # | Terminal | Command | What it does |
 |---|----------|---------|--------------|
-| 1 | Webots GUI | open `webots/worlds/home.wbt` from inside Webots | Starts the simulator, the Pioneer 3-AT robot, the four-room lab world, and the controller in [`webots/controllers/project_12_pioneercontroller_1/`](../webots/controllers/project_12_pioneercontroller_1/). The controller connects to the TCP server in step 2. |
-| 2 | Linux terminal | `cd <repo-root> && conda activate agent && python -m robot_server.mainserver` | Starts the bridge server on port 5000. The Webots-side controller (terminal 1) and the LLM-side orchestrator (terminal 3) both connect here and exchange frames through the server. |
-| 3 | Linux terminal | `cd <repo-root> && conda activate agent && python -m eval.run_experiment --systems rule_based single_llm mas --trials 1 --scenarios-file scenarios/scenarios.json --results-dir results/` | Runs each scenario on each of the three systems and writes per-scenario JSON logs to `results/<system>/`. |
+| 1 | Webots GUI | open `../mas-llm-robotics/webots/worlds/home.wbt` from inside Webots | Starts the simulator, the Pioneer 3-AT robot, the four-room lab world, and the controller in `webots/controllers/project_12_pioneercontroller_1/` of the code repo. The controller connects to the TCP server in step 2. |
+| 2 | Linux terminal | `conda activate agent && python -m robot_server.mainserver` (run from the eval repo with `PYTHONPATH` set as in step 3) | Starts the bridge server on port 5000. The Webots-side controller (terminal 1) and the LLM-side orchestrator (terminal 3) both connect here and exchange frames through the server. |
+| 3 | Linux terminal | `conda activate agent && python -m eval.run_experiment --systems rule_based single_llm mas --trials 1 --scenarios-file scenarios/scenarios.json --results-dir results/` | Runs each scenario on each of the three systems and writes per-scenario JSON logs to `results/<system>/`. |
 
 Verify connectivity before starting scenarios: terminal 2 should print "Server listening on 0.0.0.0:5000" followed by "Client 'webots' connected from ..." once the Webots controller has come up.
 
@@ -186,7 +195,7 @@ The following items are documented for transparency. None of them invalidate the
 
 - **MAS scenarios s05, s08, s14, s16, s17, s18 were not re-run for the comparative evaluation** — the manuscript's Table I assessment for those rows was carried over (`source=table_i` in `master_per_scenario.csv`). See `evaluation.md` §3.3 footnote. Re-running them in Tier 1 will produce richer logs and may shift the MAS GCR upward by 3–7 points.
 
-- **MAS s04 fresh run can hit the LangGraph recursion limit (150).** The Table I assessment ("identified all paths blocked; informed user") is used in the CSV instead of the failed fresh-run outcome. To avoid this in your own runs, either increase the `recursion_limit` argument in [`mas/runner.py`](../mas/runner.py) or rely on the carry-over.
+- **MAS s04 fresh run can hit the LangGraph recursion limit (150).** The Table I assessment ("identified all paths blocked; informed user") is used in the CSV instead of the failed fresh-run outcome. To avoid this in your own runs, either increase the `recursion_limit` argument in [`mas/runner.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/runner.py) or rely on the carry-over.
 
 - **MAS fresh runs for s19 and s20 emit a hallucinated arrival pattern** ("successfully arrived at the netball court" / "...canteen") rather than a clean refusal. The Table I record is a clean refusal, and the CSV uses Table I per the documented `fresh_run+table_i_sr` policy. This divergence is one of the items reported by `python scripts/replay_grade.py --verify-jsons`.
 
@@ -202,11 +211,11 @@ The following items are documented for transparency. None of them invalidate the
 
 ### "Server listening" never prints in terminal 2
 
-The TCP port (5000) may be occupied. Check with `lsof -i :5000` (Linux) or `netstat -an | grep 5000` (Windows). Stop any conflicting process or change the port in [`robot_server/mainserver.py`](../robot_server/mainserver.py) and the corresponding client constants in [`comm/com_client.py`](../comm/com_client.py).
+The TCP port (5000) may be occupied. Check with `lsof -i :5000` (Linux) or `netstat -an | grep 5000` (Windows). Stop any conflicting process or change the port in [`robot_server/mainserver.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/robot_server/mainserver.py) and the corresponding client constants in [`comm/com_client.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/comm/com_client.py).
 
 ### Webots controller does not connect
 
-The Webots controller is at [`webots/controllers/project_12_pioneercontroller_1/project_12_pioneercontroller_1.py`](../webots/controllers/project_12_pioneercontroller_1/project_12_pioneercontroller_1.py). It connects to `localhost:5000`. If the LLM side runs on a different host (e.g., WSL while Webots runs on Windows), edit the connection target in that file.
+The Webots controller is at [`webots/controllers/project_12_pioneercontroller_1/project_12_pioneercontroller_1.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/webots/controllers/project_12_pioneercontroller_1/project_12_pioneercontroller_1.py). It connects to `localhost:5000`. If the LLM side runs on a different host (e.g., WSL while Webots runs on Windows), edit the connection target in that file.
 
 ### `OPENAI_API_KEY` not picked up
 
@@ -214,7 +223,7 @@ The agent modules load the key via `python-dotenv`. Either `export OPENAI_API_KE
 
 ### `GraphRecursionError` during a fresh MAS run
 
-LangGraph's recursion guard is set to 150 in [`mas/app.py`](../mas/app.py) and [`mas/runner.py`](../mas/runner.py). Increase to 300 if a particular scenario expands beyond that. The current limit is enough for 19 of 20 scenarios; only s04 (all paths blocked) approaches the limit.
+LangGraph's recursion guard is set to 150 in [`mas/app.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/app.py) and [`mas/runner.py`](https://github.com/kugesan1105/mas-llm-robotics/blob/master/mas/runner.py). Increase to 300 if a particular scenario expands beyond that. The current limit is enough for 19 of 20 scenarios; only s04 (all paths blocked) approaches the limit.
 
 ### A scenario fails because the wrong door is open
 
