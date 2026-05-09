@@ -96,11 +96,6 @@ cd mas-llm-robotics-eval
 python scripts/replay_grade.py --verify-jsons
 ```
 
-## Citation
-
-Please cite the IEEE Access paper if you use this benchmark.
-Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
-
 ## License
 
 MIT — see [`LICENSE`](LICENSE).
