@@ -1,34 +1,28 @@
 # mas-llm-robotics-eval
 
-Evaluation harness, scenarios, results, and reproduction guide for the
+Evaluation harness, scenarios, results, and scoring scripts for the
 proposed Hierarchical Multi-Agentic System (MAS) for LLM-driven
-autonomous problem-solving in robotics. This repository accompanies the
-companion code repository
-[mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics), which
-contains the system source code, both baselines, the per-agent prompts,
-the Webots world, and the TCP/JSON bridge.
-
-This repository is self-contained for the **5-second number-verification**
-flow. Full end-to-end re-execution in Webots also requires the companion
-repository.
+autonomous problem-solving in robotics. The system source code, both
+baselines, the per-agent prompts, the Webots world, and the TCP/JSON
+bridge live in the companion repository
+[mas-llm-robotics](https://github.com/kugesan1105/mas-llm-robotics).
 
 ## System overview
 
-The proposed Hierarchical MAS comprises specialised agents organised
-across an interpretation layer, a supervisory layer, and an
-execution-and-perception layer. The interpretation layer parses the user
-command into a strategic plan; the supervisory layer decomposes the plan
-into discrete sub-tasks and handles errors escalated from below; the
-execution-and-perception layer interfaces with the robot and reports
-perception events back upward. A failure observed at the execution layer
-(e.g., an unexpectedly closed door) is propagated upward together with
-the full mission context, allowing the supervisory layer to re-invoke the
-strategic planner under the updated environmental constraints rather than
+The proposed Hierarchical MAS organises specialised agents into three
+layers. The **interpretation layer** parses the user command into a
+strategic plan. The **supervisory layer** decomposes the plan into
+sub-tasks and handles errors escalated from the layer below. The
+**execution-and-perception layer** interfaces with the robot and reports
+perception events upward. When an execution-layer failure occurs (e.g.,
+an unexpectedly closed door), it is propagated upward with the full
+mission context, allowing the supervisory layer to re-invoke the
+strategic planner under the updated environmental state rather than
 abort.
 
 ![Hierarchical Multi-Agentic System architecture](docs/figures/architecture.png)
 
-## Headline result
+## Comparative evaluation
 
 Three systems were evaluated on the same 20-scenario benchmark under
 identical conditions (Pioneer 3-AT robot, RRT motion planner, GPT-4o
