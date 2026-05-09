@@ -96,13 +96,6 @@ cd mas-llm-robotics-eval
 python scripts/replay_grade.py --verify-jsons
 ```
 
-For full end-to-end re-execution in Webots (~3 hours, ~$5–10 in GPT-4o
-API), clone both repositories side by side, install the dependencies
-from the code repo, set `PYTHONPATH` accordingly, and run the
-three-terminal launch (Webots GUI, `python -m robot_server.mainserver`,
-`python -m eval.run_experiment ...`). The full recipe and the
-per-scenario door-state table are in the code repo's README.
-
 ## Citation
 
 Please cite the IEEE Access paper if you use this benchmark.
